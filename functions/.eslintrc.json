@@ -1,23 +1,18 @@
 {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
     "env": {
-        "node": true,
+        "browser": true,
         "es2021": true
     },
+    "overrides": [
+    ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 2021,
+        "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": [
         "@typescript-eslint"
     ],
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "ignorePatterns": [
-        "tests/**/*.ts"
-    ],
-    "rules": {}
+    "rules": {
+    }
 }

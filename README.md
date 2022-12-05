@@ -23,7 +23,7 @@ Get the [Changelog](https://github.com/robisim74/firebase-functions-typescript-s
     - **rollup.config.js** _Rollup_ configuration for building the ES bundle
     - **tsconfig.json** _TypeScript_ compiler options
     - **.mocharc.json** _Mocha_ options
-    - **.eslintrc.json** _ESLint_ configuration
+    - **.eslintrc.cjson** _ESLint_ configuration
 - **.firebaserc**: Firebase projects
 
 ## <a name="2"></a>2 Customizing

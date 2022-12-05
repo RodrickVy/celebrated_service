@@ -5,9 +5,11 @@ import nodeResolve from '@rollup/plugin-node-resolve';
  * Add here external dependencies that actually you use.
  */
 const externals = [
-    'cors',
     'firebase-functions',
     'firebase-admin',
+    'twilio',
+    '@sendgrid/mail'
+
 ];
 
 export default {
