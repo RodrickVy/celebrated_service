@@ -47,14 +47,14 @@ export class EmailVerifier {
             const user: Account = await this.user();
             const code: string = this.generateVerificationCode();
             await this.setCodeInDb(code);
-            functions.logger.log("email sent");
+
             const msg = {
                 to: user.email,
-                from: 'noreply@celebratedapp.com',
+                from: 'rodrielnt@gmail.com',
                 subject: 'Verify your email',
                 html: this.messageTemplate(user.name, code),
             };
-
+            functions.logger.log("email sent");
             return this.sgMail.send(msg).then(async () => {
                     return {
                         success: true,
@@ -64,6 +64,7 @@ export class EmailVerifier {
                     }
                 }
             ).catch(async (error) => {
+                functions.logger.log("Error:  "+error.toString());
                 return {
                     success: false,
                     userId: this.userId,
@@ -72,7 +73,7 @@ export class EmailVerifier {
                 }
             })
         } catch (e) {
-
+            functions.logger.log("Error:  2"+e.toString());
             return {
                 success: false,
                 userId: this.userId,
@@ -135,7 +136,7 @@ export class EmailVerifier {
          <p>Here is your email verification code. </p>
          <div  style="box-shadow: none;background: #FCC21B;border: none;padding: 18px;font-size: 18px;width: 50%;margin-left: auto;margin-right: auto" >${verifyCode}</div>
             <br>
-         <p style="text-align: center;">www.celebratedapp.com</p>
+         <p style="text-align: center;">celebratedapp.com</p>
         </body>
     `;
     }

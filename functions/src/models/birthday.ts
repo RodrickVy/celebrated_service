@@ -23,7 +23,7 @@ export class Birthday {
         return false;
     }
 
-    get daysRemainingTillBirthday() {
+    get     daysRemainingTillBirthday() {
         if (this.shouldSendReminder) {
             return this.date.getDate() - (new Date()).getDate();
         }
@@ -53,18 +53,32 @@ export class Birthday {
     }
 
 
-    message(userName: string, messageType: string) {
-        if (this.daysRemainingTillBirthday === 0) {
-            return `🎉${this.randomGreetMessage(userName)}, its ${this.name}'s birthday today!`;
-        } else if (this.daysRemainingTillBirthday === 1) {
-            return `🎉Hey ${userName}, its ${this.name}'s birthday tomorrow!`;
-        } else {
-            return `🎉Hey ${userName}, its ${this.name}'s birthday in ${this.daysRemainingTillBirthday} days!`;
-        }
+    message(userName: string) {
+
+            if (this.daysRemainingTillBirthday === 0) {
+                return `🎉${this.randomGreetMessage(userName)}, its ${this.name}'s birthday today!`;
+            } else if (this.daysRemainingTillBirthday === 1) {
+                return `🎉Hey ${userName}, its ${this.name}'s birthday tomorrow!`;
+            } else {
+                return `🎉Hey ${userName}, its ${this.name}'s birthday in ${this.daysRemainingTillBirthday} days!`;
+            }
+
+
 
 
     }
 
+    messageEmail(userName: string) {
+        if (this.daysRemainingTillBirthday === 0) {
+            return `🎉its ${this.name}'s birthday today!`;
+        } else if (this.daysRemainingTillBirthday === 1) {
+            return `its ${this.name}'s birthday tomorrow!`;
+        } else {
+            return `its ${this.name}'s birthday in ${this.daysRemainingTillBirthday} days!`;
+        }
+
+
+    }
 
     oneLineDetail() {
         if (this.daysRemainingTillBirthday === 0) {
@@ -76,6 +90,15 @@ export class Birthday {
         }
     }
 
+    relativeTime() {
+        if (this.daysRemainingTillBirthday === 0) {
+            return `today`;
+        } else if (this.daysRemainingTillBirthday === 1) {
+            return `tomorrow`;
+        } else {
+            return `on ${this.date.toLocaleString('en-us', {weekday: 'long'})}`;
+        }
+    }
 
 
 }

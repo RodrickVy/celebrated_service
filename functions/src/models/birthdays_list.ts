@@ -8,6 +8,7 @@ interface ListJson {
     authorId: string,
     name: string,
     startReminding: number
+    watchers:Array<string>
 }
 export class BirthdaysList {
     name: string;
@@ -36,7 +37,7 @@ export class BirthdaysList {
     static fromJson(listJson: ListJson | any) {
         if (this.isValidObject(listJson)) {
             const birthdaysInList: Array<Birthday> = Array.from(listJson["birthdays"]).map((birthday: any) => {
-                functions.logger.log(`Birthday date :  ${new Date(birthday['date'] ).toUTCString()}`);
+
                 return new Birthday(birthday["name"], new Date(birthday['date']));
             });
              let notificationType = listJson["notificationType"];
@@ -47,7 +48,7 @@ export class BirthdaysList {
             if(startReminding == undefined){
                 startReminding = 3;
             }
-            return new BirthdaysList(listJson["name"], birthdaysInList, listJson["authorId"], [], notificationType, startReminding);
+            return new BirthdaysList(listJson["name"], birthdaysInList, listJson["authorId"], listJson["watchers"], notificationType, startReminding);
         } else {
             return new BirthdaysList("", [], '', [], '', 0);
         }
@@ -60,8 +61,13 @@ export class BirthdaysList {
     }
 
 
-    get isValid() {
-        return this.authorId !== undefined && this.authorId.length !== 0 && this.birthdays.length !== 0;
+    get isDueForReminders() {
+
+        const isValid:boolean = this.authorId !== undefined && this.authorId.length !== 0 && this.birthdays.length !== 0;
+
+        const needReminding = this.birthdays.filter((birthday:Birthday)=> birthday.shouldSendReminder(this.startReminding));
+
+        return  isValid && needReminding.length >= 1;
     }
 
 
