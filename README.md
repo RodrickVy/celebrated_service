@@ -1,10 +1,6 @@
-# Firebase Functions TypeScript starter
+# Celebrated Reminders Service
 
->Create & test Firebase Cloud Functions in TypeScript
-
-This starter allows you to create & test **Firebase Cloud Functions** in _TypeScript_.
-
-Get the [Changelog](https://github.com/robisim74/firebase-functions-typescript-starter/blob/master/CHANGELOG.md).
+This is a cloud application that handles push, emails, SMS and other notifications for birthday reminders for the celebrated application. 
 
 ## Contents
 * [1 Project structure](#1)
